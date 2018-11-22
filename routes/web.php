@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('admin', function () {
+
+})->middleware('auth');
+
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('games.json', 'GameListingController@list');
+Route::get('game/{game}', 'GameListingController@view');

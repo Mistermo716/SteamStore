@@ -72,8 +72,8 @@ CREATE TABLE IF NOT EXISTS `steamdb`.`game` (
   `imgUrl` VARCHAR(150) NOT NULL DEFAULT 'img/default.png',
   `description` VARCHAR(500) NULL,
   PRIMARY KEY (`gameId`),
-  INDEX `fk_game_platform_idx` (`platformId` ASC) VISIBLE,
-  INDEX `fk_game_gameType1_idx` (`genreId` ASC) VISIBLE,
+  INDEX `fk_game_platform_idx` (`platformId` ASC),
+  INDEX `fk_game_gameType1_idx` (`genreId` ASC),
   CONSTRAINT `fk_game_platform`
     FOREIGN KEY (`platformId`)
     REFERENCES `steamdb`.`platform` (`platformId`)
