@@ -13,7 +13,7 @@ class GameListingController extends Controller
 
         if ($platforms = $request->get('platforms')) {
             $games->whereHas('platforms', function ($q) use ($platforms) {
-                $q->where('id', explode(',', $platforms));
+                $q->where('slug', explode(',', $platforms));
             });
         }
 
