@@ -11,18 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('', 'HomeController@index')->name('home');
+Route::any('search', 'HomeController@search')->name('search');
+
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::get('', 'AdminController@index');
 });
-
-Route::get('admin', function () {
-
-})->middleware('auth');
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+
 
 Route::get('games.json', 'GameListingController@list');
 Route::get('game/{game}', 'GameListingController@view');
