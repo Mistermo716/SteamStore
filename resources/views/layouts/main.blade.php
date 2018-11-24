@@ -3,10 +3,12 @@
 @section('body')
     @include('partials.nav')
 
-    <div class="container">
+    <div class="container mb-3">
         @yield('content')
+    </div>
 
-        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <footer class="pt-4 bg-dark">
+        <div class="container">
             <div class="row">
                 <div class="col-12 col-md">
                     <img class="mb-2" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
@@ -42,6 +44,6 @@
                     </ul>
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 @endsection

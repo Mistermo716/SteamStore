@@ -17,10 +17,9 @@
             @include('components.logo')
         </a>
 
-
-        <a href="#" class="btn btn-success">
+        <a href="{{ route('cart') }}" class="btn btn-success">
             <i class="fas fa-shopping-cart"></i>
-            <span class="badge badge-light">4</span>
+            <span class="badge badge-light">0</span>
         </a>
 
         <ul class="navbar-nav mt-2 mt-lg-0 text-uppercase">

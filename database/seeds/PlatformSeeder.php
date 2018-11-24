@@ -12,11 +12,17 @@ class PlatformSeeder extends Seeder
      */
     public function run()
     {
-        $platforms = ['Windows', 'Mac OS X', 'Linux', 'Steam OS'];
+        $platforms = [
+            'Windows' => 'fab fa-windows',
+            'Mac OS X' => 'fab fa-apple',
+            'Linux' => 'fab fa-linux',
+            'Steam OS' => 'fab fa-steam'
+        ];
 
-        foreach ($platforms as $platform) {
+        foreach ($platforms as $platform => $icon) {
             Platform::create([
-                'name' => $platform
+                'name' => $platform,
+                'icon' => $icon
             ]);
         }
     }

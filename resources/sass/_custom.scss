@@ -3,3 +3,12 @@
 .navbar-brand {
     color: $body-color !important;
 }
+
+.link-unstyled, .link-unstyled:link, .link-unstyled:hover {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.game-result:hover {
+    background-color: $primary !important;
+}

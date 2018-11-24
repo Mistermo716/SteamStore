@@ -2,19 +2,20 @@
 
 @section('content')
     <h1>
-        Results for <small class="text-muted">{{ $search }}</small>
+        Browsing <small class="text-muted">{{ $search }}</small>
     </h1>
     <hr>
 
     @if ($hasResults)
-        @component('components.result-section', ['title' => 'Games', 'class' => 'text-primary', 'data' => $games])
+        @each('components.game-result', $games, 'game')
+       {{-- @component('components.result-section', ['title' => 'Games', 'class' => 'text-primary', 'data' => $games])
         @endcomponent
 
         @component('components.result-section', ['title' => 'Genres', 'class' => 'text-info', 'data' => $genres])
         @endcomponent
 
         @component('components.result-section', ['title' => 'Platforms', 'class' => 'text-success', 'data' => $platforms])
-        @endcomponent
+        @endcomponent--}}
     @else
         <strong class="text-warning">There were no results for that query.</strong>
     @endif

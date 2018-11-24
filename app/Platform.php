@@ -11,7 +11,7 @@ class Platform extends Model
 
     public $timestamps = null;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'icon'];
 
     public function games()
     {
