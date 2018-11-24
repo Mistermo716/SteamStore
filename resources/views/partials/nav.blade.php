@@ -11,41 +11,41 @@
         </div>
     </div>
 </nav>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom mb-3">
+<nav class="navbar navbar-light navbar-expand-lg bg-dark mb-3">
     <div class="container">
         <a class="navbar-brand" href="{{ url('') }}">
             @include('components.logo')
         </a>
 
-        <ul class="navbar-nav mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+
+        <a href="#" class="btn btn-success">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="badge badge-light">4</span>
+        </a>
+
+        <ul class="navbar-nav mt-2 mt-lg-0 text-uppercase">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Store</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Community</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
+                <a class="nav-link" href="#">Support</a>
             </li>
         </ul>
 
         <form action="{{ route('search') }}" class="form-inline my-2 my-lg-0 ml-3 w-50">
-            <div class="input-group w-100">
-                <input class="form-control py-2 border-right-0 border bg-light" type="search" name="q" placeholder="Enter a search term..." value="{{ old('q') }}" required>
+            <div class="input-group input-group-sm w-100">
+                <input class="form-control py-2 border border-right-0" type="search" name="q" placeholder="Enter a search term..." value="{{ old('q') }}" required>
                 <div class="input-group-append">
-                    <button class="btn btn-light border-left-0 border{{ old('q') ? '' : ' d-none' }}" type="button" id="clearSearch">
+                    <button class="btn btn-primary border border-left-0 {{ old('q') ? '' : ' d-none' }}" type="button" id="clearSearch">
                         <i class="fa fa-times"></i>
                     </button>
-                    <button class="btn btn-dark border" type="submit">
+                    <button class="btn btn-primary border" type="submit">
                         <i class="fa fa-search"></i>
                     </button>
                 </div>

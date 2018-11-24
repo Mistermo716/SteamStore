@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>
-        Results for <small>{{ $search }}</small>
+        Results for <small class="text-muted">{{ $search }}</small>
     </h1>
     <hr>
 
@@ -16,6 +16,6 @@
         @component('components.result-section', ['title' => 'Platforms', 'class' => 'text-success', 'data' => $platforms])
         @endcomponent
     @else
-        <strong class="text-danger">There were no results for that query.</strong>
+        <strong class="text-warning">There were no results for that query.</strong>
     @endif
 @endsection
