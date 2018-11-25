@@ -24,7 +24,7 @@
 
         <ul class="navbar-nav mt-2 mt-lg-0 text-uppercase">
             <li class="nav-item">
-                <a class="nav-link" href="#">Store</a>
+                <a class="nav-link" href="{{ route('store') }}">Store</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Community</a>

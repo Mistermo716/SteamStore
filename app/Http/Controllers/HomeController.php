@@ -23,8 +23,15 @@ class HomeController extends Controller
         $genres = Genre::where('name', 'like', '%'. $search .'%')->get();
         $platforms = Platform::where('name', 'like', '%'. $search .'%')->get();
 
-        $hasResults = $games->isNotEmpty() || $genres->isNotEmpty() || $platforms->isNotEmpty();
+//        $hasResults = $games->isNotEmpty() || $genres->isNotEmpty() || $platforms->isNotEmpty();
 
-        return view('results', compact('search', 'games', 'genres', 'platforms', 'hasResults'));
+        return view('results', compact('search', 'games', 'genres', 'platforms'));
+    }
+
+    public function store()
+    {
+        $games = Game::all();
+
+        return view('results', compact('games'));
     }
 }

@@ -20,8 +20,8 @@ class GameListingController extends Controller
         return $games->get();
     }
 
-    public function view(Request $request, Game $game)
+    public function view(Game $game)
     {
-        return $game;
+        return view('game', compact('game'));
     }
 }

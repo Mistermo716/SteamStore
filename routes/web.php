@@ -24,6 +24,7 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('cart', 'CartController@index')->name('cart');
+Route::get('store', 'HomeController@store')->name('store');
 
 Route::get('games.json', 'GameListingController@list');
 Route::get('game/{game}', 'GameListingController@view')->name('game.view');

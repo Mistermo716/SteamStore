@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-9">
                     <div class="mb-2">{{ $game->name }}</div>
-                    @foreach($game->platforms as $platform)
+                    @foreach ($game->platforms as $platform)
                         <i class="fa-lg {{ $platform->icon }} mr-2"></i>
                     @endforeach
                 </div>

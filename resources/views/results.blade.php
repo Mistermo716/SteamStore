@@ -2,11 +2,14 @@
 
 @section('content')
     <h1>
-        Browsing <small class="text-muted">{{ $search }}</small>
+        Browsing
+        @if (isset($search))
+            <small class="text-muted">{{ $search }}</small>
+        @endif
     </h1>
     <hr>
 
-    @if ($hasResults)
+    @if (count($games) > 0)
         @each('components.game-result', $games, 'game')
        {{-- @component('components.result-section', ['title' => 'Games', 'class' => 'text-primary', 'data' => $games])
         @endcomponent
