@@ -4,6 +4,25 @@
     <h4>{{ $game->name }}</h4>
     <div class="row">
         <div class="col-8">
+            <div id="carousel-game-gallery" class="carousel-custom carousel slide" data-ride="carousel" data-interval="false">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    @foreach ($game->images() as $image)
+                        <div class="carousel-item{{ $loop->first ? ' active' : '' }}">
+                            <img class="w-100" src="{{ $image->full }}">
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    @foreach ($game->images() as $image)
+                        <li data-target="#carousel-game-gallery" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? ' active' : '' }}">
+                            <img src="{{ $image->thumbnail }}">
+                        </li>
+                    @endforeach
+                </ol>
+            </div>
 
         </div>
         <div class="col-4">

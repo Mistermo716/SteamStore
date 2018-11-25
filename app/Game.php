@@ -9,7 +9,7 @@ class Game extends Model
 {
     use Sluggable;
 
-    protected $appends = ['rating'];
+    protected $appends = ['rating', 'images'];
 
     //region Relationships
 
@@ -34,6 +34,19 @@ class Game extends Model
 
         // Force rating to 1 to 5, 0 will be reserved for unrated
         return clamp($this->score / $this->votes, 1, 5);
+    }
+
+    public function images()
+    {
+        $images = [];
+        foreach (range(0, rand(5, 15)) as $id) {
+            $images[] = (object) [
+                'thumbnail' => 'http://placehold.it/100x56&text=Placeholder'. ($id + 1),
+                'full' => 'http://placehold.it/480x270&text=Placeholder'. ($id + 1),
+            ];
+        }
+
+        return $images;
     }
 
     //endregion
