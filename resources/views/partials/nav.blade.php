@@ -39,11 +39,8 @@
 
         <form action="{{ route('search') }}" class="form-inline my-2 my-lg-0 ml-3 w-50">
             <div class="input-group input-group-sm w-100">
-                <input class="form-control py-2 border border-right-0" type="search" name="q" placeholder="Enter a search term..." value="{{ old('q') }}" required>
+                <input class="form-control py-2 border border-right-0" type="search" name="q" placeholder="Enter a search term..." required>
                 <div class="input-group-append">
-                    <button class="btn btn-primary border border-left-0 {{ old('q') ? '' : ' d-none' }}" type="button" id="clearSearch">
-                        <i class="fa fa-times"></i>
-                    </button>
                     <button class="btn btn-primary border" type="submit">
                         <i class="fa fa-search"></i>
                     </button>
@@ -52,23 +49,3 @@
         </form>
     </div>
 </nav>
-
-@section('scripts')
-    <script>
-        var $search = $('input[name="q"]');
-        var $clear = $('#clearSearch');
-
-        $search.on('input', function() {
-            if ($(this).val().length > 0) {
-                $clear.removeClass('d-none');
-            } else {
-                $clear.addClass('d-none');
-            }
-        });
-
-        $clear.on('click', function() {
-            $search.val('');
-            $clear.addClass('d-none');
-        });
-    </script>
-@endsection

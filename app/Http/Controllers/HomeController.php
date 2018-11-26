@@ -6,6 +6,7 @@ use App\Game;
 use App\Genre;
 use App\Platform;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class HomeController extends Controller
 {
@@ -16,22 +17,36 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
+        $sort = $request->get('sort', 'relevance');
+        $request->merge(['sort' => $sort]);
+
         $request->flash();
-        $search = $request->get('q');
+        $search = $request->get('q') ?? '';
 
-        $games = Game::where('name', 'like', '%'. $search .'%')->get();
-        $genres = Genre::where('name', 'like', '%'. $search .'%')->get();
-        $platforms = Platform::where('name', 'like', '%'. $search .'%')->get();
+        /** @var $games LengthAwarePaginator $games */
+        $query = Game::with('platforms')->search($search);
 
-//        $hasResults = $games->isNotEmpty() || $genres->isNotEmpty() || $platforms->isNotEmpty();
+        $sortable = Game::sorts();
+        if ($sort = $sortable->get($sort)) {
+            $query->orderBy(array_get($sort, 'field'), array_get($sort, 'direction'));
+        }
 
-        return view('results', compact('search', 'games', 'genres', 'platforms'));
+        $games = $query->paginate();
+        $games->appends([
+            'q' => $search,
+            'sort' => $sort,
+        ]);
+
+        return view('results', compact('search', 'games', 'sortable'));
     }
 
     public function store()
     {
-        $games = Game::all();
+        $games = Game::with('platforms')
+            ->orderBy('name')
+            ->paginate();
+        $sortable = Game::sorts();
 
-        return view('results', compact('games'));
+        return view('results', compact('games', 'sortable'));
     }
 }

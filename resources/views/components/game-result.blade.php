@@ -29,7 +29,12 @@
                 </div>
                 <div class="col-2 d-flex justify-content-end align-items-center">
                     <span class="mr-3">
-                        ${{ $game->price }}
+                        @if ($game->price > 0)
+                            ${{ $game->price }}
+                        @else
+                            Free
+                        @endif
+
                     </span>
                 </div>
             </div>

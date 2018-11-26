@@ -2,14 +2,28 @@
 
 namespace App;
 
+use App\Traits\Searchable;
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
-    use Sluggable;
+    use Sluggable, Searchable;
 
+    /**
+     * Append some "virtual" attributes
+     *
+     * @var array
+     */
     protected $appends = ['rating', 'images'];
+
+    /**
+     * The columns of the full text index
+     */
+    protected $searchable = [
+        'name',
+        'description',
+    ];
 
     //region Relationships
 
@@ -47,6 +61,37 @@ class Game extends Model
         }
 
         return $images;
+    }
+
+    public static function sorts()
+    {
+        return collect([
+            'relevance' => [
+                'display' => 'Relevance',
+                'field' => 'relevance_score',
+                'direction' => 'desc',
+            ],
+            'name' => [
+                'display' => 'Name',
+                'field' => 'name',
+                'direction' => 'asc',
+            ],
+            'lowest' => [
+                'display' => 'Price Lowest',
+                'field' => 'price',
+                'direction' => 'asc',
+            ],
+            'highest' => [
+                'display' => 'Price Highest',
+                'field' => 'price',
+                'direction' => 'desc',
+            ],
+            'rating' => [
+                'display' => 'Rating',
+                'field' => 'score',
+                'direction' => 'desc',
+            ],
+        ]);
     }
 
     //endregion
