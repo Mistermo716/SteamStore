@@ -64,6 +64,14 @@
                     <i class="fa-lg {{ $platform->icon }} mr-2"></i>
                 @endforeach
             </div>
+
+            <div class="game-purchase mt-3">
+                <a href="{{ route('cart.add', $game->slug) }}" class="btn btn-success btn-block">Add to Cart</a>
+                {{--<form action="{{ route('cart.add') }}" method="post">--}}
+                    {{--@csrf--}}
+                    {{--<button type="submit" class="btn btn-success btn-block">Add to Cart</button>--}}
+                {{--</form>--}}
+            </div>
         </div>
     </div>
 @endsection
