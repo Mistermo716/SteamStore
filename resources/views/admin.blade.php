@@ -6,7 +6,7 @@
     </h1>
     <ul>
         @foreach($games as $game)
-            <li>{{$game}}</li>
+            <li>{{$game->name}}</li>
         @endforeach
     </ul>
 @endsection

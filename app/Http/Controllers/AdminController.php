@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $games = ['Minecraft', 'NBA 2K19'];
+        $games = Game::all();
         $adminName = auth()->user()->name;
         return view('admin', [
             'admin' => $adminName,
