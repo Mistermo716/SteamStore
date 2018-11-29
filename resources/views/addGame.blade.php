@@ -7,6 +7,10 @@
     <input name="name" type="text" placeholder="Name of Game"></input> <br> <br>
     <label>Publisher</label> <br>
     <input name="publisher" type="text" placeholder="Publisher"></input> <br> <br>
+    <label>Genre</label>
+    <select>
+
+    </select> <br>
     <label>Score</label> <br>
     <input name="score" type="text" placeholder="Score"></input> <br> <br>
     <label>Votes</label> <br>
