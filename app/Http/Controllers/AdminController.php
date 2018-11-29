@@ -17,4 +17,12 @@ class AdminController extends Controller
         ]);
         
     }
+
+    public function addGame(){
+        return view('addGame');
+    }
+
+    public function storeGame(){
+        return request()->all();
+    }
 }

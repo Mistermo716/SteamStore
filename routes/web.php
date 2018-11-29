@@ -16,6 +16,8 @@ Route::any('search', 'HomeController@search')->name('search');
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('', 'AdminController@index');
+    Route::get('addGame', 'AdminController@addGame');
+    Route::post('addGame', 'AdminController@storeGame');
 });
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -30,3 +32,4 @@ Route::get('store', 'HomeController@store')->name('store');
 
 Route::get('games.json', 'GameListingController@list');
 Route::get('game/{game}', 'GameListingController@view')->name('game.view');
+
