@@ -47,7 +47,6 @@ class Cart
         if ($item = array_get($this->items, $game->slug)) {
             if ($quantity && $item->quantity > $quantity) {
                 $item->remove($quantity);
-//                $this->items[$game->slug] = $item;
             } else {
                 unset($this->items[$game->slug]);
             }
@@ -120,7 +119,6 @@ class Cart
     public function total()
     {
         $subtotal = $this->subtotal();
-
         return $subtotal + ($subtotal * 0.0875);
     }
 }

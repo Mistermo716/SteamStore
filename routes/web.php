@@ -27,6 +27,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('cart', 'CartController@index')->name('cart');
 Route::get('cart/add/{game}', 'CartController@add')->name('cart.add');
+Route::get('cart/remove/{game}', 'CartController@remove')->name('cart.remove');
 
 Route::get('store', 'HomeController@store')->name('store');
 

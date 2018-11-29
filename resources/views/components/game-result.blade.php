@@ -34,7 +34,6 @@
                         @else
                             Free
                         @endif
-
                     </span>
                 </div>
             </div>

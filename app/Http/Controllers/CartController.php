@@ -23,4 +23,13 @@ class CartController extends Controller
 
         return redirect()->route('cart');
     }
+
+    public function remove(Game $game)
+    {
+        Cart::make()
+            ->remove($game)
+            ->save();
+
+        return redirect()->back();
+    }
 }

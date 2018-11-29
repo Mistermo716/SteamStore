@@ -19,7 +19,7 @@
 
         <a href="{{ route('cart') }}" class="btn btn-success">
             <i class="fas fa-shopping-cart"></i>
-            <span class="badge badge-light">0</span>
+            <span class="badge badge-light">{{ \App\Cart::make()->count() }}</span>
         </a>
 
         <ul class="navbar-nav mt-2 mt-lg-0 text-uppercase">

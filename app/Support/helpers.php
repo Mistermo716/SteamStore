@@ -5,3 +5,10 @@ if (! function_exists('clamp')) {
         return max($min, min($max, $current));
     }
 }
+
+if (! function_exists('currency')) {
+    function currency($amount, $zero = 'Free', $prefix = '$') {
+        return $amount > 0 ? $prefix . number_format((float) $amount, 2, '.', '')
+            : $zero;
+    }
+}

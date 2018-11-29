@@ -10521,3 +10521,7 @@ a.text-dark:focus {
   opacity: 0.75;
 }
 
+.game-listing .media-body .row {
+  min-height: 59px;
+}
+
