@@ -1,17 +1,9 @@
 @extends('layouts.base', ['title' => 'Login'])
 
-@section('styles')
-    <style>
-        body {
-            background: #f5f5f5;
-        }
-    </style>
-@endsection
-
 @section('body')
     <div class="text-center mt-5 mx-auto w-25">
         <div class="login-header">
-            <img class="mb-4" src="{{ asset('img/logo.png') }}" alt="" width="72" height="72">
+            <i class="fab fa-steam fa-7x"></i>
             <h1 class="h3 mb-3 font-weight-normal">
                 {{ config('app.name') }}
                 <br>
@@ -34,7 +26,7 @@
             {{--<label for="email">Email address</label>--}}
             <div class="input-group mb-1">
                 <div class="input-group-prepend">
-                    <span class="input-group-text bg-white">
+                    <span class="input-group-text bg-primary">
                         <i class="fas fa-envelope fa-fw"></i>
                     </span>
                 </div>
@@ -43,7 +35,7 @@
 
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text bg-white">
+                    <span class="input-group-text bg-primary">
                         <i class="fas fa-key fa-fw"></i>
                     </span>
                 </div>
