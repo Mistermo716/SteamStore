@@ -10,6 +10,7 @@
     <h1 class="text-center">
         Hello {{$admin}}
     </h1>
+    <div class="table-responsive">
     <table class='table table-hover'>
         <thead>
                 <tr>
@@ -39,4 +40,5 @@
         </tr>
         @endforeach
     </table>
+</div>
 @endsection
