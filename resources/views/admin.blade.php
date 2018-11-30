@@ -7,9 +7,10 @@
     }
     
   </script>
-    <h1 class="text-center">
+    <h3 class="text-center">
         Hello {{$admin}}
-    </h1>
+    </h3>
+    <a style="width:100%" class="btn btn-success" href="admin/addGame">Add Game</a>
     <div class="table-responsive">
     <table class='table table-hover'>
         <thead>
