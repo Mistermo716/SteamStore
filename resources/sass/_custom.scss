@@ -52,3 +52,29 @@
 .game-listing .media-body .row {
     min-height: 59px;
 }
+
+.custom-checkbox-icon {
+    .custom-control-input:checked ~ .custom-control-label {
+        color: $info;
+
+        &::after {
+            background-image: none;
+            content: none;
+        }
+    }
+
+    .custom-control-label {
+        font-size: 1.4em;
+        color: $text-muted;
+        transition: all 0.5s;
+    }
+
+    &:hover .custom-control-label {
+        color: $primary;
+    }
+
+    .custom-control-label::before {
+        content: none;
+        background-color: transparent;
+    }
+}

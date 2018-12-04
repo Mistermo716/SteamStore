@@ -7,7 +7,7 @@
             <div id="carousel-game-gallery" class="carousel-custom carousel slide" data-ride="carousel" data-interval="false">
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
-                    @foreach ($game->images() as $image)
+                    @foreach ($game->images as $image)
                         <div class="carousel-item{{ $loop->first ? ' active' : '' }}">
                             <img class="w-100" src="{{ $image->full }}">
                         </div>
@@ -16,7 +16,7 @@
 
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
-                    @foreach ($game->images() as $image)
+                    @foreach ($game->images as $image)
                         <li data-target="#carousel-game-gallery" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? ' active' : '' }}">
                             <img src="{{ $image->thumbnail }}">
                         </li>
@@ -67,10 +67,6 @@
 
             <div class="game-purchase mt-3">
                 <a href="{{ route('cart.add', $game->slug) }}" class="btn btn-success btn-block">Add to Cart</a>
-                {{--<form action="{{ route('cart.add') }}" method="post">--}}
-                    {{--@csrf--}}
-                    {{--<button type="submit" class="btn btn-success btn-block">Add to Cart</button>--}}
-                {{--</form>--}}
             </div>
         </div>
     </div>

@@ -12,3 +12,20 @@ if (! function_exists('currency')) {
             : $zero;
     }
 }
+
+if (! function_exists('checked')) {
+    function checked($expected, $value, $type = 'checked') {
+        $values = collect($value);
+        $values = $values->map(function ($v) {
+            return $v instanceof \Illuminate\Database\Eloquent\Model ? $v->id : $v;
+        });
+
+        return $values->contains($expected) ? ' '.$type : '';
+    }
+}
+
+if (! function_exists('selected')) {
+    function selected($expected, $value) {
+        return checked($expected, $value, 'selected');
+    }
+}

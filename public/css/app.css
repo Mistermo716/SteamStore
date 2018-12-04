@@ -10525,3 +10525,28 @@ a.text-dark:focus {
   min-height: 59px;
 }
 
+.custom-checkbox-icon .custom-control-input:checked ~ .custom-control-label {
+  color: #7DC0F0;
+}
+
+.custom-checkbox-icon .custom-control-input:checked ~ .custom-control-label::after {
+  background-image: none;
+  content: none;
+}
+
+.custom-checkbox-icon .custom-control-label {
+  font-size: 1.4em;
+  color: #999;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.custom-checkbox-icon:hover .custom-control-label {
+  color: #446C8D;
+}
+
+.custom-checkbox-icon .custom-control-label::before {
+  content: none;
+  background-color: transparent;
+}
+
