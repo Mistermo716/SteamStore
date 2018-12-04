@@ -25,7 +25,7 @@
         <select class="form-control" name="genre_id">
             <option></option>
             @foreach($genres as $genre)
-                <option value="{{ $genre->id}}"{{ selected($genre->id, $game->genre->id) }}>{{ $genre->name }}</option>
+                <option value="{{ $genre->id}}"{{ selected($genre->id, data_get($game, 'genre.id'))}}>{{ $genre->name }}</option>
             @endforeach
         </select>
     </div>
@@ -84,7 +84,7 @@
 
     <button type="submit" class="btn btn-success">
         <i class="fa fa-plus"></i>
-        Add Game
+        Save Game
     </button>
 </form>
 
