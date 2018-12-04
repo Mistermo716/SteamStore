@@ -30,9 +30,9 @@
                             </div>
                             <span class="font-weight-bold">Total</span>
                         </div>
-                        <div>
+                        <div class="text-right">
                             <div>{{ currency($cart->subtotal()) }}</div>
-                            <div class="text-right">
+                            <div>
                                 <small>+8.75%</small>
                             </div>
                             <strong>{{ currency($cart->total()) }}</strong>
