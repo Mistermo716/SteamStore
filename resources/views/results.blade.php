@@ -1,50 +1,62 @@
-@extends('layouts.main')
+@extends('layouts.main', ['fluid' => true])
 
 @section('content')
-    <h1>
-        Browsing
-        @if (isset($search))
-            <small class="text-muted">{{ $search }}</small>
-        @endif
-    </h1>
-    <hr>
 
-    @if (count($games) > 0)
-        <div class="card mb-3 bg-secondary">
-            <div class="card-body p-2">
-                <form id="search-form" action="{{ route('search') }}" class="form-inline">
-                    @if (isset($search))
-                        <div class="input-group input-group-sm col-10 pl-0">
-                            <input class="form-control py-2 border border-right-0" type="search" name="q" placeholder="Enter a search term..." value="{{ old('q') }}" required>
-                            <div class="input-group-append">
-                                <button class="btn btn-primary border border-left-0 {{ old('q') ? '' : ' d-none' }}" type="button" id="clearSearch">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                                <button class="btn btn-primary border" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    @endif
-
-                    @if (isset($sortable))
-                        <select id="search-sort" name="sort" class="form-control form-control-sm col-2 ml-auto">
-                            <option></option>
-                            @foreach ($sortable as $key => $sort)
-                                <option value="{{ $key }}"{{ isset($search) ? (old('sort') === $key ? ' selected' : '') : '' }}>{{ $sort['display'] }}</option>
-                            @endforeach
-                        </select>
-                    @endif
-                </form>
-            </div>
+    <div class="row">
+        <div class="col-11 offset-1">
+            <h1>
+                Browsing
+                @if (isset($search) || isset($category))
+                    <small class="text-muted">{{ $search ?? $category }}</small>
+                @endif
+            </h1>
+            <hr>
         </div>
+    </div>
 
-        @each('components.game-result', $games, 'game')
+    <div class="row">
+        <div class="col-10 offset-1">
 
-        {{ $games->links() }}
-    @else
-        <strong class="text-warning">There were no results for that query.</strong>
-    @endif
+            @if (count($games) > 0)
+                @if (isset($search) && isset($sortable))
+                    <div class="card mb-3 bg-secondary">
+                        <div class="card-body p-2">
+                            <form id="search-form" action="{{ route('search') }}" class="form-inline">
+                                @if (isset($search))
+                                    <div class="input-group input-group-sm col-10 pl-0">
+                                        <input class="form-control py-2 border border-right-0" type="search" name="q" placeholder="Enter a search term..." value="{{ old('q') }}" required>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary border border-left-0 {{ old('q') ? '' : ' d-none' }}" type="button" id="clearSearch">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                            <button class="btn btn-primary border" type="submit">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                @if (isset($sortable))
+                                    <select id="search-sort" name="sort" class="form-control form-control-sm col-2 ml-auto">
+                                        <option></option>
+                                        @foreach ($sortable as $key => $sort)
+                                            <option value="{{ $key }}"{{ isset($search) ? (old('sort') === $key ? ' selected' : '') : '' }}>{{ $sort['display'] }}</option>
+                                        @endforeach
+                                    </select>
+                                @endif
+                            </form>
+                        </div>
+                    </div>
+                @endif
+
+                @each('components.game-result', $games, 'game')
+
+                {{ $games->links() }}
+            @else
+                <strong class="text-warning">There were no results for that query.</strong>
+            @endif
+        </div>
+    </div>
 @endsection
 
 @section('scripts')

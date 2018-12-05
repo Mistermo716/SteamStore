@@ -3,7 +3,7 @@
 @section('body')
     @include('partials.nav')
 
-    <div class="container mb-3">
+    <div class="container{{ isset($fluid) ? '-fluid' : '' }} mb-3">
         @yield('content')
     </div>
 

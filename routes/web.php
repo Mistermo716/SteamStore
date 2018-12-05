@@ -32,7 +32,10 @@ Route::get('cart/add/{game}', 'CartController@add')->name('cart.add');
 Route::get('cart/remove/{game}', 'CartController@remove')->name('cart.remove');
 
 Route::get('store', 'HomeController@store')->name('store');
+Route::get('store/recommended', 'HomeController@recommended')->name('store.recommended');
+Route::get('store/latest', 'HomeController@latest')->name('store.latest');
+Route::get('genre/{genre}', 'HomeController@genre')->name('store.genre');
+Route::get('platform/{platform}', 'HomeController@platform')->name('store.platform');
 
-Route::get('games.json', 'GameListingController@list');
 Route::get('game/{game}', 'GameListingController@view')->name('game.view');
 

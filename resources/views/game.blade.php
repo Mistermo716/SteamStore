@@ -66,7 +66,10 @@
             </div>
 
             <div class="game-purchase mt-3">
-                <a href="{{ route('cart.add', $game->slug) }}" class="btn btn-success btn-block">Add to Cart</a>
+                <a href="{{ route('cart.add', $game->slug) }}" class="btn btn-success btn-block">
+                    <i class="fas fa-cart-plus"></i>
+                    Add to Cart
+                </a>
             </div>
         </div>
     </div>

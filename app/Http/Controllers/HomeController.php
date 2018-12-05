@@ -12,7 +12,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('welcome');
+        $genres = Genre::orderBy('name')->get();
+        $platforms = Platform::orderBy('name')->get();
+
+        return view('welcome', compact('genres', 'platforms'));
     }
 
     public function search(Request $request)
@@ -48,5 +51,49 @@ class HomeController extends Controller
         $sortable = Game::sorts();
 
         return view('results', compact('games', 'sortable'));
+    }
+
+    public function recommended()
+    {
+        $games = Game::with('platforms')
+            ->where('score', '>=', 80)
+            ->orderBy('score', 'desc')
+            ->paginate();
+
+        return view('results', compact('games'));
+    }
+
+    public function latest()
+    {
+        $games = Game::with('platforms')
+            ->where('created_at', '>=', now()->subMonth())
+            ->latest()
+            ->paginate();
+
+        return view('results', compact('games'));
+    }
+
+    public function genre(Genre $genre)
+    {
+        $games = $genre->games()
+            ->with('platforms')
+            ->orderBy('name')
+            ->paginate();
+
+        $category = $genre->name;
+
+        return view('results', compact('games', 'category'));
+    }
+
+    public function platform(Platform $platform)
+    {
+        $games = $platform->games()
+            ->with('platforms')
+            ->orderBy('name')
+            ->paginate();
+
+        $category = $platform->name;
+
+        return view('results', compact('games', 'category'));
     }
 }
