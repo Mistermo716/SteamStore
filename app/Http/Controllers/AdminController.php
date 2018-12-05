@@ -43,4 +43,33 @@ class AdminController extends Controller
         return redirect('/admin');
     }
 
+    public function editGame($id){
+        $game = Game::find($id);
+        $genres = Genre::all();
+        return view('editGame', [
+            'game' => $game,
+            'genres' => $genres
+        ]);
+        // return view('editGame');
+    }
+
+    public function editGameUpdate(){
+        $id = request('id');
+        $game = Game::find($id);
+        $game->name = request('name');
+        $game->description = request('description');
+        $game->score = request('score');
+        $game->votes = request('votes');
+        $game->publisher = request('publisher');
+        $game->genre_id = request('genre_id');
+        $game->image_url = request('image_url');
+        $game->price = request('price');
+
+        $game->save();
+
+        return redirect('/admin');
+
+
+    }
+
 }

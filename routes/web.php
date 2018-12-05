@@ -18,6 +18,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('', 'AdminController@index');
     Route::get('addGame', 'AdminController@addGame');
     Route::post('addGame', 'AdminController@storeGame');
+    Route::get('editGame/{id}', 'AdminController@editGame');
+    Route::patch('editGame/{id}', 'AdminController@editGameUpdate');
 });
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

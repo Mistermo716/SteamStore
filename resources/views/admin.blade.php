@@ -33,7 +33,7 @@
             <td>{{$game->genre->name}}</td>
             <td>{{$game->score}}</td>
             <td>${{$game->price}}</td>
-        <td><a class='btn btn-primary' href='updateProduct.php?productId="{{$game->id}}"'>Update</a></td>
+        <td><a class='btn btn-primary' href='admin/editGame/{{$game->id}}'>Update</a></td>
             <form onsubmit='return confirmDelete()'>
             <input type='hidden' name='productId' value="{{$game->id}}" />
             <td><input type='submit' class='btn btn-danger' value='Remove'></td>
