@@ -31,7 +31,7 @@
                         <a href="{{ route('admin.edit', $game->slug) }}" class="btn btn-primary btn-sm">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(@json($game))">
+                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $game->id }}, '{{ route('admin.delete', $game->slug) }}')">
                             <i class="fa fa-trash"></i>
                         </button>
                 </tr>
@@ -42,13 +42,18 @@
 
 @section('scripts')
     <script>
-        function confirmDelete(game) {
+        function confirmDelete(id, url) {
             if (! confirm("Are you sure you want to delete this product?"))
                 return;
 
-            $.post('{{ route('admin.delete', '') }}/' + id, function(data) {
-                alert('deleted');
-                console.log(data);
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                success: function(result) {
+                    console.log('success');
+                    $('#game-' + id).remove();
+                    // Do something with the result
+                }
             });
         }
     </script>

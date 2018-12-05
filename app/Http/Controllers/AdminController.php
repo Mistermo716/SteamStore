@@ -45,4 +45,11 @@ class AdminController extends Controller
 
         return view('admin.add', compact('genres', 'platforms', 'game'));
     }
+
+    public function delete(Game $game)
+    {
+        $game->delete();
+
+        return response(null, 204);
+    }
 }

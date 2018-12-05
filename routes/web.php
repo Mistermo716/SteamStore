@@ -19,7 +19,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('add', 'AdminController@create')->name('admin.add');
     Route::post('add', 'AdminController@store')->name('admin.store');
     Route::get('{game}/edit', 'AdminController@edit')->name('admin.edit');
-    Route::delete('{game}/delete', 'AdminController@edit')->name('admin.delete');
+    Route::delete('{game}/delete', 'AdminController@delete')->name('admin.delete');
+
 });
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
