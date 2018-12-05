@@ -12,7 +12,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('welcome');
+        $games = Game::inRandomOrder()->take(9);
+        return view('welcome', [
+            'games' => $games
+        ]);
     }
 
     public function search(Request $request)
