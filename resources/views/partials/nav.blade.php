@@ -4,6 +4,7 @@
             <a href="#" class="btn btn-sm btn-success rounded-top-0">Install Steam</a>
 
             @auth
+                <a href="{{ route('admin') }}" class="btn btn-sm btn-danger">Administration</a>
                 <a href="{{ route('logout') }}" class="btn btn-sm btn-dark">Log Out</a>
             @else
                 <a href="{{ route('login') }}" class="btn btn-sm btn-dark">Login</a>

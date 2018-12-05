@@ -29,3 +29,12 @@ if (! function_exists('selected')) {
         return checked($expected, $value, 'selected');
     }
 }
+
+if (! function_exists('valid')) {
+    function valid($key) {
+        if (! session('errors'))
+            return null;
+
+        return ! session('errors')->getBag('default')->has($key) ? 'is-valid' : 'is-invalid';
+    }
+}

@@ -26,6 +26,14 @@ class CreateGameRequest extends FormRequest
         return [
             'name' => 'required',
             'slug' => 'required',
+            'publisher' => 'required',
+            'genre_id' => 'required|exists:genres,id',
+            'platforms' => 'required|array',
+            'platforms.*' => 'required|exists:platforms,id',
+            'score' => 'numeric|min:0',
+            'votes' => 'numeric',
+            'image_url' => 'required|url',
+            'description' => 'string|nullable',
         ];
     }
 }

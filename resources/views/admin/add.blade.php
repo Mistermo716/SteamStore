@@ -1,5 +1,8 @@
 @extends('layouts.main')
 
+@php
+    debug(request()->all())
+@endphp
 @section('content')
 
 <form method="POST" class="form-group" action="{{ route('admin.store') }}">
@@ -7,27 +10,31 @@
 
     <div class="form-group">
         <label>Name</label>
-        <input class="form-control" name="name" type="text" oninput="onNameInput(this)" value="{{ old('name', $game->name) }}">
+        <input class="form-control {{ valid('name') }}" name="name" type="text" oninput="onNameInput(this)" value="{{ old('name', $game->name) }}">
+        @include('components.field-feedback', ['key' => 'name'])
     </div>
 
     <div class="form-group">
         <label>Slug</label>
-        <input class="form-control" name="slug" id="slug" type="text" value="{{ old('slug', $game->slug) }}">
+        <input class="form-control {{ valid('slug') }}" name="slug" id="slug" type="text" value="{{ old('slug', $game->slug) }}">
+        @include('components.field-feedback', ['key' => 'slug'])
     </div>
 
     <div class="form-group">
         <label>Publisher</label>
-        <input class="form-control" name="publisher" type="text" value="{{ old('publisher', $game->slug) }}">
+        <input class="form-control {{ valid('publisher') }}" name="publisher" type="text" value="{{ old('publisher', $game->slug) }}">
+        @include('components.field-feedback', ['key' => 'publisher'])
     </div>
 
     <div class="form-group">
         <label>Genre</label>
-        <select class="form-control" name="genre_id">
+        <select class="form-control {{ valid('genre_id') }}" name="genre_id">
             <option></option>
             @foreach($genres as $genre)
-                <option value="{{ $genre->id}}"{{ selected($genre->id, data_get($game, 'genre.id'))}}>{{ $genre->name }}</option>
+                <option value="{{ $genre->id}}"{{ selected($genre->id, old('genre_id', data_get($game, 'genre.id')))}}>{{ $genre->name }}</option>
             @endforeach
         </select>
+        @include('components.field-feedback', ['key' => 'genre_id'])
     </div>
 
     <div class="form-group">
@@ -39,7 +46,7 @@
                     <input class="custom-control-input"
                            type="checkbox" name="platforms[]"
                            value="{{ $platform->id }}" id="platform-{{ $platform->id }}"
-                           {{ checked($platform->id, $game->platforms) }}>
+                           {{ checked($platform->id, old('platforms', $game->platforms)) }}>
                     <label class="custom-control-label" for="platform-{{ $platform->id }}">
                         <i class="{{ $platform->icon }} fa-fw"></i>
                         {{ $platform->name }}
@@ -47,16 +54,19 @@
                 </div>
             @endforeach
         </div>
+        @include('components.field-feedback', ['key' => 'platforms'])
     </div>
 
     <div class="form-group">
         <label>Score</label>
-        <input class="form-control" name="score" type="number" value="{{ old('score', $game->score) }}">
+        <input class="form-control {{ valid('score') }}" name="score" type="number" value="{{ old('score', $game->score ?? 0) }}">
+        @include('components.field-feedback', ['key' => 'score'])
     </div>
 
     <div class="form-group">
         <label>Votes</label>
-        <input class="form-control" name="votes" type="number" value="{{ old('votes', $game->votes) }}">
+        <input class="form-control {{ valid('votes') }}" name="votes" type="number" value="{{ old('votes', $game->votes ?? 0) }}">
+        @include('components.field-feedback', ['key' => 'votes'])
     </div>
 
     <div class="form-group">
@@ -65,21 +75,24 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
             </div>
-            <input class="form-control" name="price" type="number" value="{{ old('price', $game->price) }}">
+            <input class="form-control {{ valid('price') }}" name="price" type="number" value="{{ old('price', $game->price) }}">
         </div>
         <small class="form-text text-muted">
             To make a game free, enter 0.
         </small>
+        @include('components.field-feedback', ['key' => 'price'])
     </div>
 
     <div class="form-group">
         <label>Image URL</label>
-        <input class="form-control" name="image_url" type="text" value="{{ old('image_url', $game->image_url) }}">
+        <input class="form-control {{ valid('image_url') }}" name="image_url" type="text" value="{{ old('image_url', $game->image_url) }}">
+        @include('components.field-feedback', ['key' => 'image_url'])
     </div>
 
     <div class="form-group">
         <label>Description</label>
-        <textarea class="form-control" name="description">{{ old('description', $game->description) }}</textarea>
+        <textarea class="form-control {{ valid('description') }}" name="description">{{ old('description', $game->description) }}</textarea>
+        @include('components.field-feedback', ['key' => 'description'])
     </div>
 
     <button type="submit" class="btn btn-success">
