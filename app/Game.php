@@ -10,6 +10,12 @@ class Game extends Model
 {
     use Sluggable, Searchable;
 
+    protected $fillable = [
+        'name', 'slug', 'publisher', 'genre_id',
+        'score', 'votes', 'price', 'image_url',
+        'description'
+    ];
+
     /**
      * Append some "virtual" attributes
      *
@@ -50,7 +56,7 @@ class Game extends Model
         return clamp($this->score / $this->votes, 1, 5);
     }
 
-    public function images()
+    public function getImagesAttribute()
     {
         $images = [];
         foreach (range(0, rand(5, 15)) as $id) {

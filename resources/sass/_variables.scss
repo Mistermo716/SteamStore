@@ -97,3 +97,6 @@ $input-disabled-bg: $body-color;
 $input-placeholder-color: $body-color;
 $list-group-active-color: $white;
 $list-group-action-color: $list-group-active-color;
+
+$form-feedback-valid-color: lighten($success, 20%);
+$form-feedback-invalid-color: lighten($danger, 20%);

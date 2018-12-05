@@ -12,3 +12,29 @@ if (! function_exists('currency')) {
             : $zero;
     }
 }
+
+if (! function_exists('checked')) {
+    function checked($expected, $value, $type = 'checked') {
+        $values = collect($value);
+        $values = $values->map(function ($v) {
+            return $v instanceof \Illuminate\Database\Eloquent\Model ? $v->id : $v;
+        });
+
+        return $values->contains($expected) ? ' '.$type : '';
+    }
+}
+
+if (! function_exists('selected')) {
+    function selected($expected, $value) {
+        return checked($expected, $value, 'selected');
+    }
+}
+
+if (! function_exists('valid')) {
+    function valid($key) {
+        if (! session('errors'))
+            return null;
+
+        return ! session('errors')->getBag('default')->has($key) ? 'is-valid' : 'is-invalid';
+    }
+}

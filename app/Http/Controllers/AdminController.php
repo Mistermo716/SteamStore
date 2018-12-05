@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateGameRequest;
+use App\Platform;
 use Illuminate\Http\Request;
 use App\Game;
 use App\Genre;
@@ -10,37 +12,38 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $games = Game::all();
-        $adminName = auth()->user()->name;
-        return view('admin', [
-            'admin' => $adminName,
-            'games' => $games
-        ]);
-        
+        $games = Game::with('genre')->get();
+
+        return view('admin.index', compact('games'));
     }
 
-    public function addGame(){
+    public function create()
+    {
+        return $this->edit(new Game());
+    }
+
+    public function store(CreateGameRequest $request)
+    {
+        /** @var Game $game */
+        $game = Game::updateOrCreate([
+            'slug' => $request->get('slug'),
+        ], $request->all());
+
+        $game->platforms()->sync($request->get('platforms'));
+
+        return redirect()->back();
+    }
+
+    public function edit(Game $game)
+    {
+        if ($game->exists) {
+            $game->load('platforms');
+        }
 
         $genres = Genre::all();
-        return view('addGame', [
-            'genres' => $genres
-        ]);
-    }
+        $platforms = Platform::all();
 
-    public function storeGame(){
-        $game = new Game();
-
-        $game->name = request('name');
-        $game->description = request('description');
-        $game->score = request('score');
-        $game->votes = request('votes');
-        $game->publisher = request('publisher');
-        $game->genre_id = request('genre_id');
-        $game->image_url = request('image_url');
-        $game->price = request('price');
-        
-        $game->save();
-        return redirect('/admin');
+        return view('admin.add', compact('genres', 'platforms', 'game'));
     }
 
     public function editGame($id){
@@ -72,4 +75,10 @@ class AdminController extends Controller
 
     }
 
+    public function delete(Game $game)
+    {
+        $game->delete();
+
+        return response(null, 204);
+    }
 }

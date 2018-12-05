@@ -20,6 +20,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('addGame', 'AdminController@storeGame');
     Route::get('editGame/{id}', 'AdminController@editGame');
     Route::patch('editGame/{id}', 'AdminController@editGameUpdate');
+    Route::get('', 'AdminController@index')->name('admin');
+    Route::get('add', 'AdminController@create')->name('admin.add');
+    Route::post('add', 'AdminController@store')->name('admin.store');
+    Route::get('{game}/edit', 'AdminController@edit')->name('admin.edit');
+    Route::delete('{game}/delete', 'AdminController@delete')->name('admin.delete');
+
 });
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
