@@ -12,12 +12,19 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $games = Game::inRandomOrder()->take(9)->get();
+        $featured = Game::inRandomOrder()
+            ->take(12)
+            ->get();
+
+        $recommended = Game::recommended()
+            ->inRandomOrder()
+            ->take(4)
+            ->get();
 
         $genres = Genre::orderBy('name')->get();
         $platforms = Platform::orderBy('name')->get();
 
-        return view('welcome', compact('genres', 'platforms', 'games'));
+        return view('welcome', compact('genres', 'platforms', 'featured', 'recommended'));
     }
 
     public function search(Request $request)
@@ -58,7 +65,7 @@ class HomeController extends Controller
     public function recommended()
     {
         $games = Game::with('platforms')
-            ->where('score', '>=', 80)
+            ->recommended()
             ->orderBy('score', 'desc')
             ->paginate();
 

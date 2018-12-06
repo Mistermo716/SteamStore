@@ -10550,3 +10550,30 @@ a.text-dark:focus {
   background-color: transparent;
 }
 
+.gallery-container,
+.carousel-item-container {
+  position: relative;
+}
+
+.gallery-container {
+  -webkit-transition: ease all 1s;
+  transition: ease all 1s;
+}
+
+.gallery-container:hover {
+  z-index: 9999;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.gallery-container .caption,
+.carousel-item-container .caption {
+  position: absolute;
+  text-align: right;
+  bottom: 0;
+  right: 0;
+  padding: 2px 4px;
+  background-color: #637C29;
+  border-radius: 4px 0 0 0;
+}
+

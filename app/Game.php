@@ -5,6 +5,7 @@ namespace App;
 use App\Traits\Searchable;
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Game extends Model
 {
@@ -67,6 +68,11 @@ class Game extends Model
         }
 
         return $images;
+    }
+
+    public function scopeRecommended(Builder $query)
+    {
+        return $query->where('score', '>=', 80);
     }
 
     public static function sorts()

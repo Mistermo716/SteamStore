@@ -59,10 +59,16 @@
                 </div>
             </div>
 
-            <div class="game-platforms mt-3">
-                @foreach ($game->platforms as $platform)
-                    <i class="fa-lg {{ $platform->icon }} mr-2"></i>
-                @endforeach
+            <div class="mt-3 d-flex align-items-center justify-content-between">
+                <div class="game-platforms">
+                    @foreach ($game->platforms as $platform)
+                        <i class="fa-lg {{ $platform->icon }} mr-2"></i>
+                    @endforeach
+                </div>
+
+                <div class="bg-success rounded text-white p-1">
+                    {{ currency($game->price) }}
+                </div>
             </div>
 
             <div class="game-purchase mt-3">
