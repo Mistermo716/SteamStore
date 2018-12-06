@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $games = Game::inRandomOrder()->take(9);
+        $games = Game::inRandomOrder()->take(9)->get();
 
         $genres = Genre::orderBy('name')->get();
         $platforms = Platform::orderBy('name')->get();
