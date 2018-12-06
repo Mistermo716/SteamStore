@@ -40,7 +40,7 @@
 
         <form action="{{ route('search') }}" class="form-inline my-2 my-lg-0 ml-3 w-50">
             <div class="input-group input-group-sm w-100">
-                <input class="form-control py-2 border border-right-0" type="search" name="q" placeholder="Enter a search term..." required>
+                <input class="form-control py-2 border border-right-0" type="search" name="q" placeholder="Enter a search term...">
                 <div class="input-group-append">
                     <button class="btn btn-primary border" type="submit">
                         <i class="fa fa-search"></i>

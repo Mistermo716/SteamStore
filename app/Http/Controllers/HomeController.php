@@ -16,7 +16,8 @@ class HomeController extends Controller
             ->take(12)
             ->get();
 
-        $recommended = Game::recommended()
+        $recommended = Game::with('platforms')
+            ->recommended()
             ->inRandomOrder()
             ->take(4)
             ->get();
@@ -32,6 +33,7 @@ class HomeController extends Controller
         $sort = $request->get('sort', 'relevance');
         $request->merge(['sort' => $sort]);
 
+        debug($request->all());
         $request->flash();
         $search = $request->get('q') ?? '';
 
@@ -43,10 +45,22 @@ class HomeController extends Controller
             $query->orderBy(array_get($sort, 'field'), array_get($sort, 'direction'));
         }
 
+        if ($genres = $request->get('genres')) {
+            $query->whereIn('genre_id', $genres);
+        }
+
+        if ($platforms = $request->get('platforms')) {
+            $query->whereHas('platforms', function ($query) use ($platforms) {
+                $query->whereIn('id', $platforms);
+            });
+        }
+
         $games = $query->paginate();
         $games->appends([
             'q' => $search,
-            'sort' => $sort,
+            'sort' => $request->get('sort'),
+            'genres' => $genres,
+            'platforms' => $platforms,
         ]);
 
         return view('results', compact('search', 'games', 'sortable'));
@@ -69,7 +83,9 @@ class HomeController extends Controller
             ->orderBy('score', 'desc')
             ->paginate();
 
-        return view('results', compact('games'));
+        $category = 'Recommended';
+
+        return view('results', compact('games', 'category'));
     }
 
     public function latest()
@@ -79,7 +95,9 @@ class HomeController extends Controller
             ->latest()
             ->paginate();
 
-        return view('results', compact('games'));
+        $category = 'Latest Releases';
+
+        return view('results', compact('games', 'category'));
     }
 
     public function genre(Genre $genre)
@@ -89,7 +107,7 @@ class HomeController extends Controller
             ->orderBy('name')
             ->paginate();
 
-        $category = $genre->name;
+        $category = 'Genre: '. $genre->name;
 
         return view('results', compact('games', 'category'));
     }
@@ -101,7 +119,7 @@ class HomeController extends Controller
             ->orderBy('name')
             ->paginate();
 
-        $category = $platform->name;
+        $category = 'Platform: '. $platform->name;
 
         return view('results', compact('games', 'category'));
     }

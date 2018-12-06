@@ -77,6 +77,15 @@
                     Add to Cart
                 </a>
             </div>
+
+            @auth
+                <div class="mt-3">
+                    <a href="{{ route('admin.edit', $game->slug) }}" class="btn btn-danger btn-block">
+                        <i class="fas fa-edit"></i>
+                        Edit
+                    </a>
+                </div>
+            @endauth
         </div>
     </div>
 @endsection
