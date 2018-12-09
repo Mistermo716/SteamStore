@@ -1,7 +1,7 @@
 @extends('layouts.base', ['title' => 'Admin'])
 
 @section('body')
-{!! $chart->container() !!}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
     <nav class="navbar navbar-light navbar-expand-lg bg-dark sticky-top">
         <a class="navbar-brand" href="{{ url('') }}">
             @include('components.logo', ['admin' => true])
