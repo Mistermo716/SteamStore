@@ -14,7 +14,7 @@
                         <li class="list-group-item d-flex justify-content-between">
                             <div>
                                 <h6 class="my-0">{{ $item->game->name }}</h6>
-                                <small class="text-muted">Quantity {{ $item->quantity }}</small>
+                                <!--<small class="text-muted">Quantity {{ $item->quantity }}</small>-->
                             </div>
                             <span>{{ currency($item->price) }}</span>
                         </li>
