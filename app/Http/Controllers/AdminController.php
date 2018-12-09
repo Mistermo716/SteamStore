@@ -6,6 +6,7 @@ use App\Http\Requests\CreateGameRequest;
 use App\Platform;
 use App\Game;
 use App\Genre;
+use Charts;
 
 class AdminController extends Controller
 {
