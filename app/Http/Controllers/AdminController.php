@@ -11,9 +11,19 @@ class AdminController extends Controller
 {
     public function index()
     {
+        return view('admin.index');
+    }
+
+    public function games()
+    {
         $games = Game::with('genre')->get();
 
-        return view('admin.index', compact('games'));
+        return view('admin.games', compact('games'));
+    }
+
+    public function reports()
+    {
+
     }
 
     public function create()
