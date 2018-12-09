@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-4 d-flex justify-content-between align-items-center">
                     <div>
-                        <input type="number" class="form-control form-control-sm" style="width: 50px" value="{{ $item->quantity }}">
+                        <input type="number" class="invisible form-control form-control-sm" style="width: 50px" value="{{ $item->quantity }}">
                     </div>
                     <a href="{{ route('cart.remove', $item->game->slug) }}" class="btn btn-danger btn-sm mr-3">Remove</a>
                 </div>
