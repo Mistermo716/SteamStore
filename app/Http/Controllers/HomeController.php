@@ -33,7 +33,6 @@ class HomeController extends Controller
         $sort = $request->get('sort', 'relevance');
         $request->merge(['sort' => $sort]);
 
-        debug($request->all());
         $request->flash();
         $search = $request->get('q') ?? '';
 
