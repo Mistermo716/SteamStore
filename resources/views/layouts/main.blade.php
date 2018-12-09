@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md">
-                    <img class="mb-2" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
+                    <i class="fab fa-steam fa-fw fa-2x"></i>
                     <small class="d-block mb-3 text-muted">&copy; {{ date('Y') }}</small>
                 </div>
                 <div class="col-6 col-md">

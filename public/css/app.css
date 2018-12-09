@@ -180,14 +180,14 @@ sup {
 }
 
 a {
-  color: #637C29;
+  color: #7DC0F0;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
 
 a:hover {
-  color: #354316;
+  color: #389fe8;
   text-decoration: underline;
 }
 
@@ -242,7 +242,7 @@ table {
 caption {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  color: #999;
+  color: #bcbcbc;
   text-align: left;
   caption-side: bottom;
 }
@@ -462,7 +462,7 @@ hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #5686ae;
 }
 
 small,
@@ -2394,7 +2394,7 @@ textarea.form-control {
 }
 
 .form-check-input:disabled ~ .form-check-label {
-  color: #999;
+  color: #bcbcbc;
 }
 
 .form-check-label {
@@ -3461,12 +3461,12 @@ fieldset:disabled a.btn {
 
 .btn-link {
   font-weight: 400;
-  color: #637C29;
+  color: #7DC0F0;
   background-color: transparent;
 }
 
 .btn-link:hover {
-  color: #354316;
+  color: #389fe8;
   text-decoration: underline;
   background-color: transparent;
   border-color: transparent;
@@ -10342,7 +10342,7 @@ a.text-dark:focus {
 }
 
 .text-muted {
-  color: #999 !important;
+  color: #bcbcbc !important;
 }
 
 .text-black-50 {
@@ -10536,7 +10536,7 @@ a.text-dark:focus {
 
 .custom-checkbox-icon .custom-control-label {
   font-size: 1.4em;
-  color: #999;
+  color: #bcbcbc;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
@@ -10575,5 +10575,18 @@ a.text-dark:focus {
   padding: 2px 4px;
   background-color: #637C29;
   border-radius: 4px 0 0 0;
+}
+
+.sidebar-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 88px;
+  height: calc(100vh - 88px);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.nav-sidebar {
+  font-weight: 600;
 }
 

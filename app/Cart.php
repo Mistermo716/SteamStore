@@ -10,10 +10,19 @@ class Cart
     protected $items = [];
 
     /**
+     * @var object|null
+     */
+    protected $discount = null;
+
+    /**
+     * @param bool $empty
      * @return Cart
      */
-    public static function make()
+    public static function make($empty = false)
     {
+        if ($empty)
+            return new static;
+
         return session()->get('cart', new static);
     }
 
@@ -86,6 +95,11 @@ class Cart
         session()->put('cart', $this);
     }
 
+    public static function checkout()
+    {
+        static::make(true)->save();
+    }
+
     /**
      * Gets the number of items in the cart.
      *
@@ -94,6 +108,30 @@ class Cart
     public function count()
     {
         return count($this->items);
+    }
+
+    /**
+     * @return object
+     */
+    public function discount()
+    {
+        return $this->discount;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasDiscount()
+    {
+        return ! is_null($this->discount);
+    }
+
+    /**
+     * @param object|null $discount
+     */
+    public function setDiscount($discount = null)
+    {
+        $this->discount = object($discount);
     }
 
     /**
@@ -119,6 +157,17 @@ class Cart
     public function total()
     {
         $subtotal = $this->subtotal();
+        optional($this->discount(), function($discount) use (&$subtotal) {
+            if ($discount->type === 'percent') {
+                $subtotal -= ($subtotal * ($discount->amount / 100));
+            } else {
+                $subtotal -= $discount->amount;
+            }
+
+            // Make it cannot go negative with clamp
+            $subtotal = $subtotal < 0 ? 0 : $subtotal;
+        });
+
         return $subtotal + ($subtotal * 0.0875);
     }
 }

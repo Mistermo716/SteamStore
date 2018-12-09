@@ -102,3 +102,19 @@
 
     border-radius: 4px 0 0 0;
 }
+
+.sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+
+    top: 88px;
+    height: calc(100vh - 88px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.nav-sidebar {
+    font-weight: 600;
+    //top: 88px;
+    //height: calc(100vh - 88px);
+}

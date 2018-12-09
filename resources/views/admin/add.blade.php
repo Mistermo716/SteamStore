@@ -1,8 +1,5 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 
-@php
-    debug(request()->all())
-@endphp
 @section('content')
 
 <form method="POST" class="form-group" action="{{ route('admin.store') }}">

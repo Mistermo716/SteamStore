@@ -38,3 +38,12 @@ if (! function_exists('valid')) {
         return ! session('errors')->getBag('default')->has($key) ? 'is-valid' : 'is-invalid';
     }
 }
+
+if (! function_exists('object')) {
+    function object($value) {
+        if (is_null($value) || is_object($value))
+            return $value;
+
+        return (object) array_wrap($value);
+    }
+}

@@ -6,15 +6,30 @@ use App\Http\Requests\CreateGameRequest;
 use App\Platform;
 use App\Game;
 use App\Genre;
-use Charts;
+use App\Charts\genrePie;
 
 class AdminController extends Controller
 {
     public function index()
     {
+        return view('admin.index');
+    }
+
+    public function games()
+    {
         $games = Game::with('genre')->get();
 
-        return view('admin.index', compact('games'));
+        return view('admin.games', compact('games'));
+    }
+
+    public function reports()
+    {
+        $chart =  new genrePie();
+        $chart
+        ->title('My nice chart')
+        ->labels(['first', 'second', 'third'])
+        ->dataset('dataset1', 'pie', [1,2,3,4]);
+        return view('admin.reports',compact('chart'));
     }
 
     public function create()
