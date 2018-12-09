@@ -30,6 +30,9 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('cart', 'CartController@index')->name('cart');
 Route::get('cart/add/{game}', 'CartController@add')->name('cart.add');
 Route::get('cart/remove/{game}', 'CartController@remove')->name('cart.remove');
+Route::post('cart/promo', 'CartController@promo')->name('cart.promo');
+Route::get('cart/checkout', 'CartController@checkout')->name('cart.checkout');
+Route::post('cart/confirm', 'CartController@confirm')->name('cart.confirm');
 
 Route::get('store', 'HomeController@store')->name('store');
 Route::get('store/recommended', 'HomeController@recommended')->name('store.recommended');

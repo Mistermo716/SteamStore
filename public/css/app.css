@@ -242,7 +242,7 @@ table {
 caption {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  color: #999;
+  color: #bcbcbc;
   text-align: left;
   caption-side: bottom;
 }
@@ -462,7 +462,7 @@ hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #5686ae;
 }
 
 small,
@@ -2394,7 +2394,7 @@ textarea.form-control {
 }
 
 .form-check-input:disabled ~ .form-check-label {
-  color: #999;
+  color: #bcbcbc;
 }
 
 .form-check-label {
@@ -10342,7 +10342,7 @@ a.text-dark:focus {
 }
 
 .text-muted {
-  color: #999 !important;
+  color: #bcbcbc !important;
 }
 
 .text-black-50 {
@@ -10536,7 +10536,7 @@ a.text-dark:focus {
 
 .custom-checkbox-icon .custom-control-label {
   font-size: 1.4em;
-  color: #999;
+  color: #bcbcbc;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
