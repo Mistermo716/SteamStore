@@ -24,17 +24,7 @@ class AdminController extends Controller
 
     public function reports()
     {
-        $data = Game::groupBy('genre_id')
-        ->get()
-        ->map(function($item){
-            return count($item);
-        });
-        $chart =  new genrePie();
-        $chart
-        ->title('My nice chart')
-        ->labels($data->keys())
-        ->dataset('dataset1', 'pie', $data->values())
-        ->backgroundColor('blue', 'red', 'yellow');
+      
         return view('admin.reports',compact('chart'));
     }
 
