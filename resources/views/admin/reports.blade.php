@@ -23,7 +23,7 @@
                   <p class="card-text">{{$genreCount}}</p>
                 </div>
               </div>
-<canvas id="myChart" width="400" height="400"></canvas>
+<canvas id="myChart" width="200px" height="200px"></canvas>
 
 <script
   src="https://code.jquery.com/jquery-3.3.1.js"
@@ -32,16 +32,15 @@
 <script>
 
     var labelData = [];
+    var labelPrice = [];
     $.ajax({type:'get', url:'/admin/ajaxReports', success:(data)=>{
-        console.log(data);
        data.forEach((element)=>{
-           labelData.push(element.name);
+           labelData.push(element.genre.name);
+           labelPrice.push(element.averagePrice);
        })
     }
     });
 
-
-    console.log(labelData);
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'bar',
@@ -49,14 +48,18 @@ var myChart = new Chart(ctx, {
         labels: labelData,
         datasets: [{
             label: 'Average Price Per Genre',
-            data: [12, 19, 3, 5, 2, 3],
+            data: labelPrice,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 255, 255, 0.2)',
+                'rgba(245, 111, 211, .2)',
+                'rgba(59,252,75,.2)',
+                'rgba(248,252,59,.2)'
             ],
             borderColor: [
                 'rgba(255,99,132,1)',
@@ -64,7 +67,11 @@ var myChart = new Chart(ctx, {
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(245, 111, 211, 1)',
+                'rgba(59,252,75,1)',
+                'rgba(248,252,59,1)'
             ],
             borderWidth: 1
         }]
