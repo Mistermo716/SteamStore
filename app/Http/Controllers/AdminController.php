@@ -7,6 +7,7 @@ use App\Platform;
 use App\Game;
 use App\Genre;
 use App\Charts\genrePie;
+use \Request;
 
 class AdminController extends Controller
 {
@@ -25,9 +26,16 @@ class AdminController extends Controller
 
     public function reports()
     {
-       $genres = Genre::all();
-        $genreCount = Genre::withCount('games')->get();
-        return view('admin.reports', compact('genres', 'genreCount'));
+        $gameCount = Game::count();
+        $gamePrice = Game::avg('price');
+        $genreCount = Genre::count();
+       
+        return view('admin.reports', compact('gameCount', 'gamePrice', 'genreCount'));
+    }
+    public function ajaxReports(){
+        $genres = Genre::all();
+
+        return $genres;
     }
 
     public function create()
