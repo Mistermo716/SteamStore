@@ -3,12 +3,14 @@
 @section('content')
 <canvas id="myChart" width="400" height="400"></canvas>
 <script>
-
+var data = "@foreach($genres as $genre){{$genre->name}} @endforeach";
+var dataArr = data.split(" ");
+console.log(dataArr)
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'pie',
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: dataArr,
         datasets: [{
             label: '',
             data: [12, 19, 3, 5, 2, 3],

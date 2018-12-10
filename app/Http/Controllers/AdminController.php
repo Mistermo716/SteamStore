@@ -18,14 +18,16 @@ class AdminController extends Controller
     public function games()
     {
         $games = Game::with('genre')->get();
-
+        
+        
         return view('admin.games', compact('games'));
     }
 
     public function reports()
     {
-      
-        return view('admin.reports',compact('chart'));
+       $genres = Genre::all();
+        $genreCount = Genre::withCount('games')->get();
+        return view('admin.reports', compact('genres', 'genreCount'));
     }
 
     public function create()
