@@ -15,10 +15,10 @@ Route::get('', 'HomeController@index')->name('home');
 Route::any('search', 'HomeController@search')->name('search');
 
 Route::prefix('admin')->middleware('auth')->group(function () {
-    Route::get('', 'AdminController@index')->name('admin');
+    Route::get('', 'AdminController@reports')->name('admin');
     Route::get('games', 'AdminController@games')->name('admin.games');
-    Route::get('reports', 'AdminController@reports')->name('admin.reports');
-    Route::get('ajaxReports', 'AdminController@ajaxReports')->name('admin.ajax');
+    Route::get('report/average', 'AdminController@ajaxReportAverage')->name('admin.report.average');
+    Route::get('report/genres', 'AdminController@ajaxReportGenres')->name('admin.report.genres');
     Route::get('add', 'AdminController@create')->name('admin.add');
     Route::post('add', 'AdminController@store')->name('admin.store');
     Route::get('{game}/edit', 'AdminController@edit')->name('admin.edit');

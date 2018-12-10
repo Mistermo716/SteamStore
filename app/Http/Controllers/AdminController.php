@@ -6,21 +6,13 @@ use App\Http\Requests\CreateGameRequest;
 use App\Platform;
 use App\Game;
 use App\Genre;
-use App\Charts\genrePie;
-use \Request;
 
 class AdminController extends Controller
 {
-    public function index()
-    {
-        return view('admin.index');
-    }
-
     public function games()
     {
         $games = Game::with('genre')->get();
-        
-        
+
         return view('admin.games', compact('games'));
     }
 
@@ -29,17 +21,23 @@ class AdminController extends Controller
         $gameCount = Game::count();
         $gamePrice = Game::avg('price');
         $genreCount = Genre::count();
-       
+
         return view('admin.reports', compact('gameCount', 'gamePrice', 'genreCount'));
     }
-    public function ajaxReports(){
-        $genres = Genre::all();
+
+    public function ajaxReportAverage()
+    {
         $avgPriceGenre = Game::selectRaw('AVG(price) as averagePrice, genre_id ')
-        ->groupBy('genre_id')
-        ->with('genre')
-        ->get();
+            ->groupBy('genre_id')
+            ->with('genre')
+            ->get();
 
         return $avgPriceGenre;
+    }
+
+    public function ajaxReportGenres()
+    {
+        return Genre::withCount('games')->get();
     }
 
     public function create()

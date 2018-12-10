@@ -1,8 +1,6 @@
 @extends('layouts.base', ['title' => 'Admin'])
 
 @section('body')
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
     <nav class="navbar navbar-light navbar-expand-lg bg-dark sticky-top">
         <a class="navbar-brand" href="{{ url('') }}">
             @include('components.logo', ['admin' => true])
@@ -31,7 +29,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <nav class="nav nav-sidebar sidebar-sticky col-md-2 d-none d-md-block bg-light">
+            <nav class="nav nav-sidebar sidebar-sticky col-md-2 d-none d-md-block bg-secondary">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin') }}">
                         <i class="fa fa-home fa-fw"></i>
@@ -44,18 +42,11 @@
                         Games
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.reports') }}">
-                        <i class="fa fa-chart-bar fa-fw"></i>
-                        Reports
-                    </a>
-                </li>
             </nav>
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 p-4">
                 @yield('content')
             </main>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
         </div>
     </div>
 @endsection
