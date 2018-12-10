@@ -23,7 +23,7 @@
                   <p class="card-text">{{$genreCount}}</p>
                 </div>
               </div>
-<canvas id="myChart" width="200px" height="200px"></canvas>
+<canvas id="myChart"></canvas>
 
 <script
   src="https://code.jquery.com/jquery-3.3.1.js"
@@ -33,6 +33,7 @@
 
     var labelData = [];
     var labelPrice = [];
+
     $.ajax({type:'get', url:'/admin/ajaxReports', success:(data)=>{
        data.forEach((element)=>{
            labelData.push(element.genre.name);
@@ -41,8 +42,11 @@
     }
     });
 
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
+//only way to render chart with data everytime is to use timeout function
+//otherwise chart initially loads with blank data until interacted with
+setTimeout(function(){
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
         labels: labelData,
@@ -77,6 +81,7 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
+        responsive: true,
         scales: {
             yAxes: [{
                 ticks: {
@@ -86,6 +91,9 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+}, 1000);
+
+
 
 </script>
 @endsection
