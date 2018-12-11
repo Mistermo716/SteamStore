@@ -22,7 +22,7 @@ class Game extends Model
      *
      * @var array
      */
-    protected $appends = ['rating', 'images'];
+    protected $appends = ['rating'];
 
     /**
      * The columns of the full text index
@@ -61,19 +61,6 @@ class Game extends Model
     {
         return $this->hasMany(Image::class);
     }
-
-//    public function getImagesAttribute()
-//    {
-//        $images = [];
-//        foreach (range(0, rand(5, 15)) as $id) {
-//            $images[] = (object) [
-//                'thumbnail' => 'http://placehold.it/100x56&text=Placeholder'. ($id + 1),
-//                'full' => 'http://placehold.it/480x270&text=Placeholder'. ($id + 1),
-//            ];
-//        }
-//
-//        return $images;
-//    }
 
     public function scopeRecommended(Builder $query)
     {
