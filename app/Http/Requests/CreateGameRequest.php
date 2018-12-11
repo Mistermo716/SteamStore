@@ -30,6 +30,7 @@ class CreateGameRequest extends FormRequest
             'genre_id' => 'required|exists:genres,id',
             'platforms' => 'required|array',
             'platforms.*' => 'required|exists:platforms,id',
+            'price' => 'numeric|min:0',
             'score' => 'numeric|min:0',
             'votes' => 'numeric',
             'image_url' => 'required|url',
