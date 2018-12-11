@@ -19,7 +19,7 @@
 
     <div class="form-group">
         <label>Publisher</label>
-        <input class="form-control {{ valid('publisher') }}" name="publisher" type="text" value="{{ old('publisher', $game->slug) }}">
+        <input class="form-control {{ valid('publisher') }}" name="publisher" type="text" value="{{ old('publisher', $game->publisher) }}">
         @include('components.field-feedback', ['key' => 'publisher'])
     </div>
 
