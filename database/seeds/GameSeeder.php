@@ -37,13 +37,13 @@ class GameSeeder extends Seeder
                 'price' => array_get($fields, '1'),
                 'score' => array_get($fields, '2'),
                 'votes' => 20,
-                'publisher' => array_get($fields, '4'),
+                'publisher' => array_get($fields, '3'),
                 'genre_id' => $this->mapGenre(array_get($fields, '5')),
                 'image_url' => array_get($fields, '6'),
                 'description' => array_get($fields, '7'),
             ]);
 
-            $platforms = array_get($fields, '3');
+            $platforms = array_get($fields, '4');
 
             /** @var Game $game */
             $game->platforms()->sync($this->mapPlatforms($platforms));
