@@ -23,7 +23,7 @@ class GameSeeder extends Seeder
         }
 
         // Maps Chris' SQL data to a seeder
-        $games = file_get_contents(database_path('gamesFull.txt'));
+        $games = file_get_contents(database_path('games.txt'));
         $games = explode("\n", $games);
 
         foreach ($games as $game) {
