@@ -61,12 +61,22 @@ class GameSeeder extends Seeder
         echo "Extracting images from $url...";
         /** @var \Symfony\Component\DomCrawler\Crawler $crawler */
         $crawler = Goutte::request('GET', $url);
+        $cookie = new \Symfony\Component\BrowserKit\Cookie(
+            'birthtime',
+            189331201,
+            null
+        );
+        Goutte::getCookieJar()->set($cookie);
 
         // Check for age restriction on this game
         if ($crawler->filter('#app_agegate')->count() > 0) {
             echo 'Age Restriction Found' ."\n";
             $ageUrl = str_replace('agecheck', 'agecheckset', $crawler->getUri());
-            $sid = Goutte::getCookieJar()->get('sessionid');
+            $sid = Goutte::getCookieJar()
+                ->get('sessionid')
+                ->getValue();
+
+            echo 'Attempting to bypass for session '. $sid .'...';
 
             $crawler = Goutte::request('POST', $ageUrl, [
                 'session' => $sid,
@@ -74,7 +84,6 @@ class GameSeeder extends Seeder
                 'ageMonth' => '11',
                 'ageYear' => '1991',
             ]);
-
 
             // Retry
             $crawler = Goutte::request('GET', $url);
