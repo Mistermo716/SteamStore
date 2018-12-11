@@ -56,6 +56,12 @@ class AdminController extends Controller
 
         $game->platforms()->sync($request->get('platforms'));
 
+        if ($game->images()->count() === 0) {
+            $game->images()->create([
+                'url' => 'http://placehold.it/480x270&text=Placeholder',
+            ]);
+        }
+
         return redirect()->back();
     }
 

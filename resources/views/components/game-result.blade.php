@@ -1,6 +1,6 @@
 <a href="{{ route('game.view', ['game' => $game->slug]) }}" class="link-unstyled">
     <div class="game-result media bg-secondary mb-2">
-        <img class="mr-3" src="{{ $game->image_url }}" width="125">
+        <img class="mr-3" src="{{ $game->image_url }}" width="125" height="58">
         <div class="media-body">
             <div class="row">
                 <div class="col-9">
