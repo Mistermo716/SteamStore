@@ -27,10 +27,12 @@ class AdminController extends Controller
 
     public function ajaxReportAverage()
     {
+
         $avgPriceGenre = Game::selectRaw('AVG(price) as averagePrice, genre_id ')
             ->groupBy('genre_id')
             ->with('genre')
             ->get();
+
 
         return $avgPriceGenre;
     }

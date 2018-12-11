@@ -67,6 +67,7 @@
             for (var element of data) {
                 labels.push(element.genre.name);
                 prices.push(element.averagePrice);
+                console.log(`labels ${labels} and ${prices}`)
             }
 
             makeChart('average', 'Average Price by Genre', labels, prices);
