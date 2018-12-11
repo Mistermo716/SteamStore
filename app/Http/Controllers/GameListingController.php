@@ -23,7 +23,6 @@ class GameListingController extends Controller
     public function view(Game $game)
     {
         $game->load('images');
-        debug($game);
 
         return view('game', compact('game'));
     }
