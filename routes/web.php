@@ -44,4 +44,3 @@ Route::get('genre/{genre}', 'HomeController@genre')->name('store.genre');
 Route::get('platform/{platform}', 'HomeController@platform')->name('store.platform');
 
 Route::get('game/{game}', 'GameListingController@view')->name('game.view');
-

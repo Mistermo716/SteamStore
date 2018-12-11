@@ -57,18 +57,23 @@ class Game extends Model
         return clamp($this->score / $this->votes, 1, 5);
     }
 
-    public function getImagesAttribute()
+    public function images()
     {
-        $images = [];
-        foreach (range(0, rand(5, 15)) as $id) {
-            $images[] = (object) [
-                'thumbnail' => 'http://placehold.it/100x56&text=Placeholder'. ($id + 1),
-                'full' => 'http://placehold.it/480x270&text=Placeholder'. ($id + 1),
-            ];
-        }
-
-        return $images;
+        return $this->hasMany(Image::class);
     }
+
+//    public function getImagesAttribute()
+//    {
+//        $images = [];
+//        foreach (range(0, rand(5, 15)) as $id) {
+//            $images[] = (object) [
+//                'thumbnail' => 'http://placehold.it/100x56&text=Placeholder'. ($id + 1),
+//                'full' => 'http://placehold.it/480x270&text=Placeholder'. ($id + 1),
+//            ];
+//        }
+//
+//        return $images;
+//    }
 
     public function scopeRecommended(Builder $query)
     {

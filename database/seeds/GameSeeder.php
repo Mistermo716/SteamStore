@@ -23,7 +23,7 @@ class GameSeeder extends Seeder
         }
 
         // Maps Chris' SQL data to a seeder
-        $games = file_get_contents(database_path('games.txt'));
+        $games = file_get_contents(database_path('gamesFull.txt'));
         $games = explode("\n", $games);
 
         foreach ($games as $game) {
@@ -47,6 +47,53 @@ class GameSeeder extends Seeder
 
             /** @var Game $game */
             $game->platforms()->sync($this->mapPlatforms($platforms));
+
+            // Load the images from the store page
+            $this->scrapeImages($game, array_get($fields, '8'));
+        }
+    }
+
+    public function scrapeImages(Game $game, $url)
+    {
+        if (! $url)
+            return;
+
+        echo "Extracting images from $url...";
+        /** @var \Symfony\Component\DomCrawler\Crawler $crawler */
+        $crawler = Goutte::request('GET', $url);
+
+        // Check for age restriction on this game
+        if ($crawler->filter('#app_agegate')->count() > 0) {
+            echo 'Age Restriction Found' ."\n";
+            $ageUrl = str_replace('agecheck', 'agecheckset', $crawler->getUri());
+            $sid = Goutte::getCookieJar()->get('sessionid');
+
+            $crawler = Goutte::request('POST', $ageUrl, [
+                'session' => $sid,
+                'ageDay' => '13',
+                'ageMonth' => '11',
+                'ageYear' => '1991',
+            ]);
+
+
+            // Retry
+            $crawler = Goutte::request('GET', $url);
+        }
+
+        $images = $crawler->filter('.highlight_screenshot_link')
+            ->extract('href');
+
+        echo 'Found ' . count($images) . "\n";
+
+        // Add a fallback
+        if (count($images) <= 0) {
+            $images = ['http://placehold.it/480x270&text=Age+Restriction+Placeholder'];
+        }
+
+        foreach ($images as $image) {
+            $game->images()->create([
+                'url' => $image,
+            ]);
         }
     }
 

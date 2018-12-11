@@ -9,7 +9,7 @@
                 <div class="carousel-inner">
                     @foreach ($game->images as $image)
                         <div class="carousel-item{{ $loop->first ? ' active' : '' }}">
-                            <img class="w-100" src="{{ $image->full }}">
+                            <img class="w-100 img-fluid" src="{{ $image->url }}">
                         </div>
                     @endforeach
                 </div>
@@ -18,7 +18,7 @@
                 <ol class="carousel-indicators">
                     @foreach ($game->images as $image)
                         <li data-target="#carousel-game-gallery" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? ' active' : '' }}">
-                            <img src="{{ $image->thumbnail }}">
+                            <img width="100" height="56" src="{{ $image->url }}">
                         </li>
                     @endforeach
                 </ol>
